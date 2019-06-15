@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset ="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content= "ie-edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>MyBlog</title>
+</head>
+<body>
+     
+    <!-- Navbar -->
+    <div class="sticky-top">
+        <nav class="topnav navbar navbar-expand-lg navbar-dark bg-dark" id="myTopnav">
+            <a class="navbar-brand" href="#">My Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Widgets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="widgets/pdf_viewer/index.html" target="_blank">PDF Viewer</a>
+                            <a class="dropdown-item" href="widgets/capital_lookup/main.html">Capital Lookup</a>
+                            <a class="dropdown-item" href="widgets/bookmarker/index.html">Bookmarker</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Articles</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" wtx-context="8D3CEFD1-BF5C-4FEF-8A46-3990BC75669E">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" wtx-context="8825FB60-0BE6-492E-979B-40AD5B6EAEC0">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    
+    <!--HomePage(default or current content)-->
+    <div class="jumbotron">
+        <h1 class="display-3"><h1 class="display-3"><i class="fas fa-fire-alt"></i>My Blog</h1>
+
+        <p class="lead" style="color:rgb(61, 61, 61)"> A BLOG THAT BRINGS YOU MIXTURE OF CONTENT INCLUDING BOOKS/PODCASTS/BLOGS/YTVIDEOS/AND AWESOME COMPUTER STUFF. WITH 2 YEARS EXPERIENCE, I'VE POLISHED MY SKILLS AS A PYTHON PROGRAMMER,
+            WEB DESIGNER AND DEVELOPER. THIS SITE SHOWCASES SOME OF MY WORK. 
+            AND LEARNING STILL GOES ON. MOST OF WEB DEVELOPMENT CONTENT IS INSPIRED BY BRAD TRAVERSY. </p>
+        <hr class="my-4">
+        <div class="container">
+            <h1 class="display-4">Harmeet Matharoo, a
+                <span class="txt-type" data-wait="3000" data-words='["Developer", "Designer", "Creator"]'></span>
+            </h1>
+        </div>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+    </div>
+    <div style="background-color: rgb(194, 194, 194);">
+        <h2 class="display-4 text-center font-weight-bold" id="projects">Projects</h2>
+
+        
+        <div class="container mt-4">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1" >To do/study/view app using Vanilla Javascript</h4>
+                <small>20 May</small>
+            </div>
+            <br>
+            <p class="mb-1">Category: Web Development</p>
+            </a>
+        </div>
+            
+        <div id="todo" class="container mt-4">
+                <!-- ------------------------------------            My Book List App     --------------------------------------- -->
+            <div class="container mt-4" style="font-size:15px; color:black;">
+                <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i> My<span class="text-primary">Book</span>List</h1>
+                <form id="book-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn">Description</label>
+                        <input type="text" id="isbn" class="form-control">
+                    </div>
+                    <input type="submit" value="Add Book" class="btn btn-success btn-block" style=font-size:15px;">
+                </form>
+                <table class="table table-striped mt-5" style="font-size:15px; color:black;">
+                    <thead>
+                        <tr>
+                        <th><h5>Title</h5></th>
+                        <th><h5>Author</h5></th>
+                        <th><h5>ISBN#</h5></th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="book-list"></tbody>
+                </table>
+            </div>
+            <script src="app.js"></script>
+
+        <!-- ------------------------------------            My Contacts App     --------------------------------------- -->
+            
+        <br />
+        <br />
+        <br />
+        <p style="padding-top: 50px; text-align: center; border-top: 2px solid black;"> </p>
+        
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1" >Filterable List</h4>
+            <small>21 May</small>
+        </div>
+        <br>
+        <p class="mb-1">Category: Web Development</p>
+        <iframe class="container mt-4" style= "display: block; height:900px;" src="contacts/index.html"></iframe>
+        </a>
+
+        <!--<iframe class="container mt-4" style= "display: block; height:900px;" src="contacts/index.html">
+        <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> "</iframe>
+        -->
+        <br />
+        <br />
+        <br />
+
+
+        <p style="padding-top: 50px; text-align: center; border-top: 2px solid black;"> </p>
+        
+        <!--  -----------------------------------------           Weight Converter App               -----------------------------------------------     -->
+        
+        <a href="#" class="mb-5 list-group-item list-group-item-action flex-column align-items-start active">
+        <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1" >Weight Converter</h4>
+            <small>21 May</small>
+        </div>
+        <br>
+        <p class="mb-1">Category: Web Development</p>
+        
+        <iframe class="container" style= "display: block; height:900px;" src="weight converter/conv.html"></iframe>
+        </a>
+
+    
+    </div>
+
+    <!--  -----------------------------------------                       Footer                     ---------------------------------------------------     -->
+    <div style="padding-top: 50px; text-align: center; border-top: 2px solid black;">
+        <footer >
+        <h3 class="pb-5"> Author: Harmeet Matharoo </h3>
+        </footer> 
+
+    </div>   
+<!-- Script for navbar-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

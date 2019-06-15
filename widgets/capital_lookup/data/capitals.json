@@ -1,0 +1,100 @@
+[
+    {
+        "abbr": "AB",
+        "name": "Alberta",
+        "capital": "Edmonton", 
+        "lat": "53.55", 
+        "long": "-113.5"
+    }, 
+    {
+        "abbr": "BC",
+        "name": "British Columbia",
+        "capital": "Victoria", 
+        "lat": "48.450234", 
+        "long": "-123.343529"
+    }, 
+    {
+        "abbr": "MB",
+        "name": "Manitoba", 
+        "capital": "Winnipeg", 
+        "lat": "49.883333", 
+        "long": "-97.166667"
+    }, 
+    {
+        "abbr": "NB",
+        "name": "New Brunswick", 
+        "capital": "Fredericton", 
+        "lat": "45.910648", 
+        "long": "-66.658649"
+    },
+    {
+        "abbr": "NL",
+        "name": "Newfoundland and Labrador",
+        "capital": "Saint John\u2019s", 
+        "lat": "47.55", 
+        "long": "-52.666667"
+    },
+    {
+        "abbr": "NS",
+        "name": "Nova Scotia",
+        "capital": "Halifax", 
+        "lat": "44.65", 
+        "long": "-63.6"
+    }, 
+    {
+        "abbr": "ON",
+        "name": "Ontario",
+        "capital": "Toronto", 
+        "lat": "43.666667", 
+        "long": "-79.416667"
+    },
+    {
+        "abbr": "PE",
+        "name": "Prince Edward Island", 
+        "capital": "Charlottetown",
+        "lat": "46.238225", 
+        "long": "-63.139481"
+    },
+    {
+        "abbr": "QC", 
+        "name": "Qu\u00e9bec",
+        "capital": "Qu\u00e9bec",
+        "lat": "46.8", 
+        "long": "-71.25"
+    },
+    {
+        "abbr": "SK",
+        "name": "Saskatchewan",
+        "capital": "Regina",
+        "lat": "50.45", 
+        "long": "-104.616667"
+    },
+    {
+        "abbr": "YT",
+        "name": "Yukon",
+        "capital": "Whitehorse",
+        "lat": "60.716667", 
+        "long": "-135.05"
+    },
+    {
+        "abbr": "NU",
+        "name": "Nunavut",
+        "capital": "Iqaluit",
+        "lat": "63.733333", 
+        "long": "-68.5"
+    },
+    {
+        "abbr": "NT",
+        "name": "Northwest Territories",
+        "capital": "Yellowknife",
+        "lat": "62.45",
+        "long": "-114.35"
+    },
+    {
+        "abbr": "CA",
+        "name": "Canada",
+        "capital": "Ottawa",
+        "lat": "45.416667",
+        "long": "-75.7"
+    }
+]
