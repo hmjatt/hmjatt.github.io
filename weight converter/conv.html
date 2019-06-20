@@ -6,76 +6,44 @@
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!--  <link rel="stylesheet" href="style.css">  -->
-  <style>
 
-    body, html {
-    height: 100%;
-    }
-
-    .container { 
-      /* The image used */
-      background-image: url("pic/scale.jpg");
-
-      /* Full height */
-      height: 100%; 
-      
-
-      /* Center and scale the image nicely */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      
-    }
-
-    #heading {
-      margin-bottom: 70px;
-      margin-top: 70px;
-      color: rgb(255, 255, 255);
-    }
-
-    #output h4 {
-      padding:20px;
-      color: black;
-    } 
-  </style>
   <title>Weight Converter</title>
 </head>
 <body>
   
-  <div class="container"> 
+  <div class="container-fluid bg-dark" style="box-shadow: none; min-height: 350px;"> 
     <div class="row">
       <div class="col">
-        <h1 class="display-4 text-center" id="heading">Weight Converter</h1>
         <!----------------------------                Create Input                    -------------------------------->
         <form> 
           <div class="form-group">
-            <input  id="lbsInput" type="number" class="form-control form-control-lg" placeholder="Enter Weight in Pounds...">
+            <input  id="lbsInput" type="number" class="form-control form-control-lg mt-5" placeholder="Enter Weight in Pounds...">
           </div>
         </form>
         <!----------------------------                Create Converted Output                    -------------------------------->
         <div id="output">
-          <div class="card mb-2" style="background: rgb(253, 234, 205);">
+          <div class="card mb-2 pl-3" style="background: rgb(253, 234, 205);">
             <div class="card-block">
               <h4>Pounds:</h4>
               <div id="gramsOutput"></div>
             </div>
           </div>
 
-          <div class="card mb-2" style="background: rgb(200, 255, 232);">
+          <div class="card mb-2 pl-3" style="background: rgb(200, 255, 232);">
             <div class="card-block">
               <h4>Kilograms:</h4>
               <div id="kgOutput"></div>
             </div>
           </div>
 
-          <div class="card mb-2" style="background: rgb(194, 236, 255);">
+          <div class="card mb-2 pl-3" style="background: rgb(194, 236, 255);">
             <div class="card-block">
               <h4>Ounces:</h4>
               <div id="ozOutput"></div>
             </div>
           </div>
 
-          <div class="card mb-2" style="background: rgb(229, 219, 255);">
+          <div class="card mb-2 pl-3" style="background: rgb(229, 219, 255);">
             <div class="card-block">
               <h4>Grams:</h4>
               <div id="poundOutput"></div>
