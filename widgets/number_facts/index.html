@@ -18,6 +18,13 @@
       <div class="col-md-6 mx-auto">
         <div class="bg-primary text-white mt-5 p-4">
           <input type="number" class="form-control form-control-lg" id="numberInput" placeholder="Enter any number...">
+          <select id="option" onchange="getFactFetch()" class="custom-select my-3">
+              <option selected>Open this select menu</option>
+              <option value="trivia">Trivia</option>
+              <option value="year">Year</option>
+              <option value="date">Date</option>
+              <option value="math">Math</option>
+            </select>
           <div id="fact" class="card-body">
             <h4 class="card-title">
               Number Fact
@@ -30,36 +37,43 @@
   </div>
 
   <script>
-    let fact = document.querySelector('#fact');
-    let factText = document.querySelector('#factText');
+    let fact = document.getElementById('fact');
+    let factText = document.getElementById('factText');
+    let option = document.getElementById("option");
+    option.addEventListener(onchange, getFactFetch);
 
-    let numberInput = document.querySelector('#numberInput');
-    numberInput.addEventListener('input', getFactAjax);
+    let numberInput = document.getElementById('numberInput');
+    numberInput.addEventListener('input', getFactFetch);
+    
+    
 
-    // Fetch with XHR
-    function getFactAjax(){
-      let number = numberInput.value;
-      if(number != ''){
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://numbersapi.com/'+number);
+    // // Fetch with XHR
+    // function getFactAjax(){
+    //   let number = numberInput.value;
+    //   if(number != ''){
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('GET', 'http://numbersapi.com/'+number);
   
-        xhr.onload = function(){
-          if(this.status == 200){
-            fact.style.display = 'block';
-            factText.innerText = this.responseText;
-          }
-        }
+    //     xhr.onload = function(){
+    //       if(this.status == 200){
+    //         fact.style.display = 'block';
+    //         factText.innerText = this.responseText;
+    //       }
+    //     }
   
-        xhr.send(); 
-        }
-    }
+    //     xhr.send(); 
+    //     }
+    // }
 
     // Fetch with Fetch API
+    
+    
     function getFactFetch(){
       let number = numberInput.value;
+      let opt = option.value;
       
-      if(number != ''){
-        fetch('http://numbersapi.com/'+number)
+      if(number != '' && opt != 'Open this select menu'){
+        fetch('http://numbersapi.com/'+number+'/'+opt)
         .then(response => response.text())
         .then(data => {
           fact.style.display = 'block';
