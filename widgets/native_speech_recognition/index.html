@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Speech Detection</title>
+</head>
+<body style="background:rgb(255, 215, 155);">
+  <div class="card text-center mx-auto my-4" style="max-width: 80%;">
+    <div class="card-body">
+      <div class="words" contenteditable></div>
+    </div>
+  </div>
+  <div class="text-center"> 
+    <button type="button" class="btn btn-info btn-lg" onclick="myFunction()">Click me</button>
+  </div>
+<script>
+
+  
+  function myFunction(){
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    
+    let p = document.createElement('p');
+    const words = document.querySelector('.words');
+    words.appendChild(p);
+
+    recognition.addEventListener('result', e => {
+      const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+
+        const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+        p.textContent = poopScript;
+
+        if (e.results[0].isFinal) {
+          p = document.createElement('p');
+          words.appendChild(p);
+        }
+    });
+
+    recognition.addEventListener('end', recognition.start);
+
+    recognition.start();
+  }
+</script>
+    
+
+  <style>
+
+    body {
+      
+      
+    }
+
+  
+  </style>
+
+</body>
+</html>
