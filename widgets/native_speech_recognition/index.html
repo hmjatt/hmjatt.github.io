@@ -11,8 +11,24 @@
       <div class="words" contenteditable></div>
     </div>
   </div>
-  <div class="text-center"> 
-    <button type="button" class="btn btn-lg" style="background: url(mic/mic.svg) center no-repeat; padding: 30px;" onclick="myFunction()"></button>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="text-center"> 
+          <div class="form-group">
+            <select id="lang-select" class="form-control form-control-lg">
+              <option value="en-US" selected="selected">English</option>
+              <option value="hi-IN" >Hindi</option>
+              <option value="3">Tagalog</option>
+            </select>
+          </div>
+        </div>
+      <div class="col-sm">
+        <div class="text-center"> 
+          <button type="button" class="btn btn-lg" style="background: url(mic/mic.svg) center no-repeat; padding: 30px;" onclick="myFunction()"></button>
+        </div>
+      </div>
+    </div>
   </div>
 <script>
 
@@ -22,7 +38,8 @@
 
     const recognition = new SpeechRecognition();
     recognition.interimResults = true;
-    recognition.lang = 'en-US';
+    var e = document.getElementById("lang-select");
+    recognition.lang = e.options[e.selectedIndex].value;
     
     let p = document.createElement('p');
     const words = document.querySelector('.words');
