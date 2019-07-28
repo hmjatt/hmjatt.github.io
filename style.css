@@ -1,0 +1,50 @@
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#speech_btn {
+    background-color: orange;
+}
+
+#capital_btn {
+    background-color: rgb(0, 0, 0);
+}
+
+#weight_btn {
+    background-color: rgb(0, 0, 0);
+}
+
+#bookmark_btn {
+    background-color: rgb(0, 123, 255);
+}
+
+#speech_btn_txt {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+#capital_btn_txt {
+    color:rgb(255, 224, 218);
+    text-decoration: none;
+}
+
+#weight_btn_txt {
+    color: rgb(206, 255, 236);
+    text-decoration: none;
+}
+
+#bookmark_btn_txt {
+    color: rgb(52, 58, 64);
+    text-decoration: none;
+}
+
+footer h2{
+    font-weight: 200;
+    text-align: center;
+}
+
+footer small{
+    text-align: center;
+}

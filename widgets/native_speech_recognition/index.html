@@ -1,81 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="Harmeet Matharoo">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Poiret+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Speech Detection</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Speech Recognition</title>
 </head>
-<body style="background:rgb(255, 215, 155);">
-  <div class="card text-center mx-auto my-4" style="max-width: 80%;">
-    <div class="card-body">
-      <div class="words" contenteditable></div>
+
+<body>
+    <div class="container">
+      <!-- ////////////////   HEADING        //////////////-->
+      <div id="heading" class="text-center mt-3"><h1><u>Speech Recognition</u> </h1></div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <div class="text-center"> 
-          <div class="form-group">
-            <select id="lang-select" class="form-control form-control-lg">
-              <option value="en-US" selected="selected">English</option>
-              <option value="hi-IN" >Hindi</option>
-              <option value="3">Tagalog</option>
-            </select>
+    <!-- ////////////////      COMMAND APP     ///////////// -->
+  <div class="container" id="commandApp">
+    <div class="d-flex justify-content-center">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" id="btnGiveCommand" class="btn btn-warning">Give Command!</button>
+        <button type="button" class="btn btn-dark" id="getweather">Get Weather</button>
+
+        <!-- <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">Dropdown link</a>
+            <a class="dropdown-item" href="#">Dropdown link</a>
           </div>
-        </div>
-      <div class="col-sm">
-        <div class="text-center"> 
-          <button type="button" class="btn btn-lg" style="background: url(mic/mic.svg) center no-repeat; padding: 30px;" onclick="myFunction()"></button>
+        </div> -->
+      </div>
+    </div>
+      <!-- ////////////////      COMMAND APP     ///////////// -->
+    <!-- <div class="container">
+      <button type="button" id="btnGiveCommand" class="btn btn-warning">Give Command!</button>
+      <!--                    get weather button 
+      <button type="button" class="btn btn-dark mr-4" id="getweather">Get Weather</button>
+    </div> -->
+    
+      
+
+    <div id="msg-card">
+      <div class="card">
+        <div class="card-body">
+          <span id="message"></span>
         </div>
       </div>
     </div>
+
+    <br>
+
+
+    <!--   weather div  -->
+        
+    <div class="container" id="weather">
+      <div class="text-center" id="description"></div>
+      <h1 class="text-center" id="temp"></h1>
+      <div class="text-center" id="location"></div>      
+    </div>
+    <br>
   </div>
-<script>
 
   
-  function myFunction(){
-    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    const recognition = new SpeechRecognition();
-    recognition.interimResults = true;
-    var e = document.getElementById("lang-select");
-    recognition.lang = e.options[e.selectedIndex].value;
+
+  <!-- ////////////////   RESULTS       //////////////-->
+  <div class="container">
+    <div id="results">
+      <div id="icons" class="container">
+        <!-- ////////////////   MIC BUTTON      //////////////-->
+        <div id="div_start">
+          <button id="start_button" onclick="toggleStartStop()"><img alt="Start" id="start_img" src="img/mic_still.png"></button>
+        </div>
+        <div class="container" id="notesApp">
+          <h5 class="text-center"> Click on Microphone to start taking notes.</h5>
+        </div>
+      </div>  
+      <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
+    </div>
+  </div>
+<br>
+    <!-- ////////////////  LANGUAGE AND DIALECT      //////////////-->
+    <div class="container">
+      <div id="div_language">
+        <select class="custom-select" id="select_language" onchange="updateCountry()">
+        </select>&nbsp;&nbsp; <select class=" custom-select" id="select_dialect" onchange="getDialect()">
+        </select>
+      </div>
+    </div>
+
+    <!-- ////////////////  footer or notes      //////////////-->
+
+    <div id="footer" class="container pt-5 text-center">
+        <hr>
+        <!-- add links to references which open in new tab -->
+        <p class="my-3">Note: This app uses Web Speech API. Visit <a href="https://w3c.github.io/speech-api/" target="_blank">https://w3c.github.io/speech-api/</a> for full docs.</p>
+        <p class="my-3">Note: This app uses Open Weather Map API. Visit <a href=" https://openweathermap.org/api/" target="_blank">https://openweathermap.org/api/</a> for full docs.</p>
+
+      </div>
+    </div>
+  
+  <script>
+
+
     
-    let p = document.createElement('p');
-    const words = document.querySelector('.words');
-    words.appendChild(p);
+  //---------------------------------------------------------------------------------------------
 
-    recognition.addEventListener('result', e => {
-      const transcript = Array.from(e.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('');
+    //    ===============    voice command  ===============
+    
+    //get weather script starts
+    document.getElementById("getweather").style.display="none"
 
-        const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
-        p.textContent = poopScript;
+    var message = document.querySelector('#message');
 
-        if (e.results[0].isFinal) {
-          p = document.createElement('p');
-          words.appendChild(p);
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+
+    var grammar = '#JSGF V1.0;'
+
+    var recognition = new SpeechRecognition();
+    var speechRecognitionList = new SpeechGrammarList();
+    speechRecognitionList.addFromString(grammar, 1);
+    recognition.grammars = speechRecognitionList;
+    recognition.lang = 'en-US';
+    //added continous recording to be false, so we can turn it on when we want
+    recognition.continuous = false;
+    // changed interim to false
+    recognition.interimResults = false;
+
+
+    recognition.onresult = function (event) {
+      var last = event.results.length - 1;
+      var command = event.results[last][0].transcript;
+
+
+      // show what is detected
+      message.textContent = 'Voice Input: ' + command + '.';
+    
+      // add a fetch api under if else
+      if (command.toLowerCase() === 'get weather') {
+        // fxn that shows get Weather button when command is detected
+        document.getElementById("getweather").style.display="block";
+        document.getElementById('getweather').addEventListener('click', getWeather);
+
+
+        function getWeather(e){
+          e.preventDefault();
+          fetch('https://api.openweathermap.org/data/2.5/weather?id=5935804&appid=81f57dbad420810a9eb904a675a5f588')
+          .then(function(resp) { return resp.json() }) // Convert data to json
+          .then(function(data) {
+            
+            var celcius = Math.round(parseFloat(data.main.temp)-273.15);
+            var fahrenheit = Math.round(((parseFloat(data.main.temp)-273.15)*1.8)+32);
+            var description = data.weather[0].description; 
+          
+            document.getElementById('description').innerHTML = description;
+            document.getElementById('temp').innerHTML = celcius + '&deg;';
+            document.getElementById('location').innerHTML = data.name;
+          
+          })
+          .catch(function() {
+            // catch any errors
+          });
+          
         }
-    });
+      }
 
-    recognition.addEventListener('end', recognition.start);
+    }
+      
 
-    recognition.start();
-  }
-</script>
     
+    // stop recognizing when speech has ended
+    recognition.onspeechend = function () {
+      recognition.stop();
+    };
 
-  <style>
-
-    body {
-      
-      
+    recognition.onerror = function (event) {
+      message.textContent = 'Error occurred in recognition: ' + event.error;
     }
 
+    document.querySelector('#btnGiveCommand').addEventListener('click', function () {
+      recognition.start();
+
+    });
+    // get weather scrpit ends
+        //    ===============    voice command  ===============   
+
+//---------------------------------------------------------------------------------------------------
+
+//    ===============    NOTES APP  ===============
+
+//                    FILLING  LANGUAGE AND DIALECT OPTIONS 
+// If you modify this array, also update default language / dialect below.
+  var languages =
+    [['Afrikaans', ['af-ZA']],
+    ['አማርኛ', ['am-ET']],
+    ['Azərbaycanca', ['az-AZ']],
+    ['বাংলা', ['bn-BD', 'বাংলাদেশ'],
+      ['bn-IN', 'ভারত']],
+    ['Bahasa Indonesia', ['id-ID']],
+    ['Bahasa Melayu', ['ms-MY']],
+    ['Català', ['ca-ES']],
+    ['Čeština', ['cs-CZ']],
+    ['Dansk', ['da-DK']],
+    ['Deutsch', ['de-DE']],
+    ['English', ['en-AU', 'Australia'],
+      ['en-CA', 'Canada'],
+      ['en-IN', 'India'],
+      ['en-KE', 'Kenya'],
+      ['en-TZ', 'Tanzania'],
+      ['en-GH', 'Ghana'],
+      ['en-NZ', 'New Zealand'],
+      ['en-NG', 'Nigeria'],
+      ['en-ZA', 'South Africa'],
+      ['en-PH', 'Philippines'],
+      ['en-GB', 'United Kingdom'],
+      ['en-US', 'United States']],
+    ['Español', ['es-AR', 'Argentina'],
+      ['es-BO', 'Bolivia'],
+      ['es-CL', 'Chile'],
+      ['es-CO', 'Colombia'],
+      ['es-CR', 'Costa Rica'],
+      ['es-EC', 'Ecuador'],
+      ['es-SV', 'El Salvador'],
+      ['es-ES', 'España'],
+      ['es-US', 'Estados Unidos'],
+      ['es-GT', 'Guatemala'],
+      ['es-HN', 'Honduras'],
+      ['es-MX', 'México'],
+      ['es-NI', 'Nicaragua'],
+      ['es-PA', 'Panamá'],
+      ['es-PY', 'Paraguay'],
+      ['es-PE', 'Perú'],
+      ['es-PR', 'Puerto Rico'],
+      ['es-DO', 'República Dominicana'],
+      ['es-UY', 'Uruguay'],
+      ['es-VE', 'Venezuela']],
+    ['Euskara', ['eu-ES']],
+    ['Filipino', ['fil-PH']],
+    ['Français', ['fr-FR']],
+    ['Basa Jawa', ['jv-ID']],
+    ['Galego', ['gl-ES']],
+    ['ગુજરાતી', ['gu-IN']],
+    ['Hrvatski', ['hr-HR']],
+    ['IsiZulu', ['zu-ZA']],
+    ['Íslenska', ['is-IS']],
+    ['Italiano', ['it-IT', 'Italia'],
+      ['it-CH', 'Svizzera']],
+    ['ಕನ್ನಡ', ['kn-IN']],
+    ['ភាសាខ្មែរ', ['km-KH']],
+    ['Latviešu', ['lv-LV']],
+    ['Lietuvių', ['lt-LT']],
+    ['മലയാളം', ['ml-IN']],
+    ['मराठी', ['mr-IN']],
+    ['Magyar', ['hu-HU']],
+    ['ລາວ', ['lo-LA']],
+    ['Nederlands', ['nl-NL']],
+    ['नेपाली भाषा', ['ne-NP']],
+    ['Norsk bokmål', ['nb-NO']],
+    ['Polski', ['pl-PL']],
+    ['Português', ['pt-BR', 'Brasil'],
+      ['pt-PT', 'Portugal']],
+    ['Română', ['ro-RO']],
+    ['සිංහල', ['si-LK']],
+    ['Slovenščina', ['sl-SI']],
+    ['Basa Sunda', ['su-ID']],
+    ['Slovenčina', ['sk-SK']],
+    ['Suomi', ['fi-FI']],
+    ['Svenska', ['sv-SE']],
+    ['Kiswahili', ['sw-TZ', 'Tanzania'],
+      ['sw-KE', 'Kenya']],
+    ['ქართული', ['ka-GE']],
+    ['Հայերեն', ['hy-AM']],
+    ['தமிழ்', ['ta-IN', 'இந்தியா'],
+      ['ta-SG', 'சிங்கப்பூர்'],
+      ['ta-LK', 'இலங்கை'],
+      ['ta-MY', 'மலேசியா']],
+    ['తెలుగు', ['te-IN']],
+    ['Tiếng Việt', ['vi-VN']],
+    ['Türkçe', ['tr-TR']],
+    ['اُردُو', ['ur-PK', 'پاکستان'],
+      ['ur-IN', 'بھارت']],
+    ['Ελληνικά', ['el-GR']],
+    ['български', ['bg-BG']],
+    ['Pусский', ['ru-RU']],
+    ['Српски', ['sr-RS']],
+    ['Українська', ['uk-UA']],
+    ['한국어', ['ko-KR']],
+    ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'],
+      ['cmn-Hans-HK', '普通话 (香港)'],
+      ['cmn-Hant-TW', '中文 (台灣)'],
+      ['yue-Hant-HK', '粵語 (香港)']],
+    ['日本語', ['ja-JP']],
+    ['हिन्दी', ['hi-IN']],
+    ['ภาษาไทย', ['th-TH']]];
   
-  </style>
+    
+    
+    // init/create a variable
+    var recognizing;
+    //create a variable and assign it value of constructor SpeechRecognition();
+    var initNotesApp = new SpeechRecognition();
+    
+    //set state of continous recording to true
+    initNotesApp.continuous = true;
+    // set it true if want to record what service thinks what it is(its not final result)
+    initNotesApp.interimResults = true;
+    // select language code/value from dialect element
+   
+    // iterating through arrray
+    for (var i = 0; i < languages.length; i++) {
+      // create a constructor "Option", which select dialect and language, whose value is assigned to a module/property 
+      select_language.options[i] = new Option(languages[i][0], i);
+    }
+    // Set default language
+    select_language.selectedIndex = 10;
+    
+    // call a fxn which updates dialect and language select options
+    updateCountry();
+    // select a default dialect using property selectedIndex
+    select_dialect.selectedIndex = 11;
+    
+    function getDialect() {
+      initNotesApp.lang = select_dialect.value;
+     
+    }
+
+    // a fxn which updates dialect and language select options
+    function updateCountry() {
+      //iterate through items/dialects, start from last item and remove until 1(first) is left
+      // maybe it was done this way to arrange it assending order
+      for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+        // remove items from list
+        select_dialect.remove(i);
+      }
+      //property "selectedIndex" of module "select_language" of var"language" is assigned to var "list" 
+      var list = languages[select_language.selectedIndex];
+      // iterate through list of languages stored in "list" 
+      for (var i = 1; i < list.length; i++) {
+        
+        // add a constructor which selects "dialect code" and "dialect name" to select_dialect.options(any property/selected_index)
+        select_dialect.options.add(new Option(list[i][1], list[i][0]));  
+
+      }
+
+      //
+      initNotesApp.lang = select_dialect.value;
+     
+    }
+
+
+     
+    // initialize reset fxn which stops app from recording when api service disconnected
+    reset();
+    // if onend event has occured/ app stopped recording, run reset fxn
+    initNotesApp.onend = reset;
+
+    // fxn which runs when something is recognized
+    initNotesApp.onresult = function (event) {
+      var final = "";
+      var interim = "";
+      for (var i = 0; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          final += event.results[i][0].transcript;
+        } else {
+          interim += event.results[i][0].transcript;
+        }
+      }
+      final_span.innerHTML = final;
+      interim_span.innerHTML = interim;
+    }
+
+    // reset fxn
+    function reset() {
+      recognizing = false;
+      start_img.src = 'img/mic_still.png';
+    }
+
+    // fxn for button which toggles between on/off states of app
+    function toggleStartStop() {
+      if (recognizing) {
+        initNotesApp.stop();
+        reset();
+      } else {
+       initNotesApp.start();
+        recognizing = true;
+        
+        start_img.src = 'img/mic_on.gif';
+        final_span.innerHTML = "";
+        interim_span.innerHTML = "";
+
+      }
+    }
+
+
+    //    ===============    NOTES APP  ===============
+
+  
+  </script>
 
 </body>
+
 </html>

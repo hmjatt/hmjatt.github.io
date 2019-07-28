@@ -5,10 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <meta http-equiv="Content-Security-Policy: default-src ' self' *.numbersapi.com">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <meta name="author" content="Harmeet Matharoo">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
   <title>MyBlog</title>
 </head>
 
@@ -62,12 +61,13 @@
   </div>
 
   <!--HomePage(default or current content)-->
+   <!-- LOGO -->
+    
+  <img src="images/logo/logo.png" class="mt-4" id="logo" alt="Logo">
   <!-- HEADER  -->
   <div class="container my-5 py-5">
-    <!-- LOGO -->
-    <div class="container">
-    <img src="images/logo/logo.png" class="rounded mx-auto d-block mt-4" alt="Logo">
-    </div>
+   
+    
     
     <!-- Typewriter Effect -->
     <div class="ty">
@@ -120,62 +120,57 @@
   
   <h1 class=" display-4 py-5 border" style="text-align: center; background-color:lightblue;" id=projects> PROJECTS </h1>
   
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center text-white overflow-hidden" id="bookmark">
+ <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 pb-5">
+    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center text-white overflow-hidden" id="speech">
       <div class="my-3 py-3">
-        <h2 class="display-4 text-center text-primary"> Bookmarker</h2>
-        <p class="lead font-weight-normal">Bookmark Your Favourite sites.</p>
+        <h2 class="display-4" style="color: orange;">Speech Recognition</h2>
+        <p class="lead font-weight-normal">Say something for Native Speech Recognition.</p>
       </div>
-      <div class="shadow-sm mx-auto" style="width: 80%; height: 350px; border-radius: 21px 21px 0 0; background-color: #e9ecef;">
-        <iframe class="container" style="display: block; height:350px; border-radius: 21px 21px 0 0;" src="widgets/bookmarker/index.html"></iframe>
+      <div class="container pb-5">
+          <button class="btn btn-lg" id="speech_btn"><a href="widgets/native_speech_recognition/index.html" target="_blank" id="speech_btn_txt">Live Preview</a></button>
       </div>
+      
     </div>
+    
     <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center overflow-hidden" style="background-color: rgb(255, 224, 218);" id="capital">
       <div class="my-3 p-3">
         <h2 class="display-4">Capital Lookup</h2>
         <p class="lead font-weight-normal">Find capital of province or Canada.</p>
       </div>
-      <div class="bg-dark shadow-sm mx-auto " style="width: 80%; height: 350px; border-radius: 21px 21px 0 0;">
-        <iframe class="container" style="display: block; height:350px; border-radius: 21px 21px 0 0;" src="widgets/capital_lookup/main.html"></iframe>
+      <div class="container pb-5">
+          <button class="btn btn-lg" id="capital_btn"><a href="widgets/capital_lookup/main.html" target="_blank" id="capital_btn_txt">Live Preview</a></button>
       </div>
     </div>
   </div>
 
   <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 pb-5">
     <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center overflow-hidden" style="background-color:rgb(206, 255, 236)" id="conv">
-      <div class="my-3 p-3">
+      <div class="my-3 py-3">
         <h2 class="display-4">Weight Converter</h2>
         <p class="lead font-weight-normal">Pounds to grams, kilograms and ounces.</p>
       </div>
-      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 350px; border-radius: 21px 21px 0 0;">
-        <iframe class="container" style="display: block; height:350px; border-radius: 21px 21px 0 0;" src="weight converter/conv.html"></iframe>
+      <div class="container pb-5">
+          <button class="btn btn-lg" id="weight_btn"><a href="widgets/weight converter/conv.html" target="_blank" id="weight_btn_txt">Live Preview</a></button>
       </div>
     </div>
-    <div class="bg-secondary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center text-white overflow-hidden" id="speech">
-      <div class="my-3 py-3">
-        <h2 class="display-4" style="color: orange;">Speech Recognition</h2>
-        <p class="lead font-weight-normal">Say something for Native Speech Recognition.</p>
+    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 flex-fill text-center text-white overflow-hidden" id="bookmark">
+      <div class="my-3 p-3">
+        <h2 class="display-4 text-center text-primary"> Bookmarker</h2>
+        <p class="lead font-weight-normal">Bookmark Your Favourite sites.</p>
       </div>
-      <div class="shadow-sm mx-auto"
-      style="width: 80%; height: 200px; border-radius: 21px 21px 0 0; background-color:rgb(255, 215, 155);">
-      <iframe class="container"
-        style="display: block; height: 200px; border-radius: 21px 21px 0 0; border-bottom-width: 0px;"
-        src="widgets/native_speech_recognition/index.html"></iframe>
-      <div class="shadow-lg mx-auto"
-        style="width: auto; height: 150px; border-left: 2px solid rgb(154, 154, 154); border-right: 2px solid rgb(236, 236, 236); background-color:rgb(255, 215, 155);">
-        <a href="widgets/native_speech_recognition/index.html" class="btn btn-lg active" style="background:ghostwhite;" role="button" aria-pressed="true">Live Preview</a>
+      <div class="container pb-5">
+          <button class="btn btn-lg" id="bookmark_btn"><a href="widgets/bookmarker/index.html" target="_blank" id="bookmark_btn_txt">Live Preview</a></button>
       </div>
     </div>
-    </div>
-  </div>
+</div>
+
+  
 
   <!--  -----------------------------------------                       Footer                     ---------------------------------------------------     -->
-  <div style="text-align: center;">
-    <footer>
-      <h3 class="display-4"> Author: Harmeet Matharoo </h3>
-      <small class="d-block mb-3 text-muted">© 2019</small>
-    </footer>
-  </div>
+  <footer>
+    <h2> Author: Harmeet Matharoo </h2>
+    <small class="d-block mb-3 text-muted">© 2019</small>
+  </footer>
   <!-- Script for navbar-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
